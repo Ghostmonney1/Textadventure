@@ -22,11 +22,15 @@ class Game
 		Room pub = new Room("in the campus pub");
 		Room lab = new Room("in a computing lab");
 		Room office = new Room("in the computing admin office");
+		Room basement = new Room("in the basement");
 
 		// Initialise room exits
 		outside.AddExit("east", theatre);
 		outside.AddExit("south", lab);
 		outside.AddExit("west", pub);
+		outside.AddExit("down", basement);
+		basement.AddExit("up", outside);
+
 
 		theatre.AddExit("west", outside);
 
