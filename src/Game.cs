@@ -1,15 +1,18 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Game
 {
 	// Private fields
 	private Parser parser;
-	private Room currentRoom;
+	private Player player;
+	// private Room currentRoom;
 
 	// Constructor
 	public Game()
 	{
 		parser = new Parser();
+		player = new Player();
 		CreateRooms();
 	}
 
@@ -47,7 +50,7 @@ class Game
 		// ...
 
 		// Start game outside
-		currentRoom = outside;
+		player.CurrentRoom = outside;
 	}
 
 	//  Main play routine. Loops until end of play.
@@ -76,7 +79,7 @@ class Game
 		Console.WriteLine("Zuul is a new, incredibly boring adventure game.");
 		Console.WriteLine("Type 'help' if you need help.");
 		Console.WriteLine();
-		Console.WriteLine(currentRoom.GetLongDescription());
+		Console.WriteLine(player.CurrentRoom.GetLongDescription());
 	}
 
 	// Given a command, process (that is: execute) the command.
@@ -96,16 +99,19 @@ class Game
 		{
 			case "help":
 				PrintHelp();
-				break;
+			break;
 			case "go":
 				GoRoom(command);
-				break;
+			break;
 			case "look":
 				Look(command);
-				break;
+			break;
 			case "quit":
 				wantToQuit = true;
-				break;
+			break;
+			case "status":
+			    Status(command);
+			break;
 		}
 
 		return wantToQuit;
@@ -122,6 +128,7 @@ class Game
 		Console.WriteLine("You are lost. You are alone.");
 		Console.WriteLine("You wander around at the university.");
 		Console.WriteLine();
+		Console.WriteLine("You are dead");	
 		// let the parser print the commands
 		parser.PrintValidCommands();
 	}
@@ -140,19 +147,23 @@ class Game
 		string direction = command.SecondWord;
 
 		// Try to go to the next room.
-		Room nextRoom = currentRoom.GetExit(direction);
+		Room nextRoom = player.CurrentRoom.GetExit(direction);
 		if (nextRoom == null)
 		{
 			Console.WriteLine("There is no door to "+direction+"!");
 			return;
 		}
 
-		currentRoom = nextRoom;
-		Console.WriteLine(currentRoom.GetLongDescription());
+		player.CurrentRoom = nextRoom;
+		Console.WriteLine(player.CurrentRoom.GetLongDescription());
 	}
 
 	private void Look(Command command)
 	{
-		Console.WriteLine(currentRoom.GetLongDescription());
+		Console.WriteLine(player.CurrentRoom.GetLongDescription());
+	}
+	private void Status(Command command)
+	{
+		Console.WriteLine("Your health is: " + player.Health);
 	}
 }
