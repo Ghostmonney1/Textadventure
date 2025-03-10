@@ -1,29 +1,29 @@
 class Player
 {
-    //auto property
-    public Room CurrentRoom { get; set; }
-
-    //constructor
     // fields
     private int health = 100;
 
-   
     public int Health
     {
         get { return health; }
         set { health = value; }
-
     }
     
-    
+    //auto property
+    public Room CurrentRoom { get; set; }
 
-    
+    //constructor
     public Player()
     {
         CurrentRoom = null;
         health = 100;
 
-    } 
+    }
+
+    public bool IsHurt()
+    {
+        return true;
+    }
    public int Damage(int amount)
     {
         health -= amount;

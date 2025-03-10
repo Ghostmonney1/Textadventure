@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 class Game
@@ -155,7 +156,22 @@ class Game
 		}
 
 		player.CurrentRoom = nextRoom;
+		if(player.IsHurt())
+		{
+			player.Damage(10);
+			Console.WriteLine("You have been hurt by moving");
+			Console.WriteLine("Your health is now: " + player.Health);
+		}
+		player.Damage(10);
 		Console.WriteLine(player.CurrentRoom.GetLongDescription());
+
+		if (!player.IsAlive())
+		{
+			CheckGameOver();
+			return;
+		}
+		
+
 	}
 
 	private void Look(Command command)
@@ -166,4 +182,11 @@ class Game
 	{
 		Console.WriteLine("Your health is: " + player.Health);
 	}
+	
+	private void CheckGameOver()
+    {
+	    Console.WriteLine("You are Dead, Game Over");
+	    Environment.Exit(0);
+    }
 }
+
