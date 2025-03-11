@@ -47,6 +47,15 @@ class Game
 
 		// Create your Items here
 		// ...
+
+        Item spacekace;
+		Item Key;
+		Item medkit;
+		Item bomb;
+		Item knife;
+
+
+
 		// And add them to the Rooms
 		// ...
 
