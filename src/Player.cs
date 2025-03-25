@@ -1,24 +1,24 @@
 class Player
 {
     // fields
+    private Inventory backpack;
     private int health = 100;
     public Inventory Backpack
     {
-        get; set;
+        get {return backpack;}
     }
+    public Room CurrentRoom { get; set; }
 
     public int Health
     {
         get { return health; }
-        set { health = value; }
+        // set { health = value; }
     }
 
-    private Inventory backpack;
     
     
     
     //auto property
-    public Room CurrentRoom { get; set; }
 
     //constructor
     public Player()
@@ -27,7 +27,7 @@ class Player
         health = 100;
 
         // 25kg is pretty heavy to carry around all day.
-        Backpack = new Inventory(25); 
+        backpack = new Inventory(25); 
 
     }
     
