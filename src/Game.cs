@@ -48,16 +48,16 @@ class Game
 		// Create your Items here
 		// ...
 
-        Item spacekace;
-		Item Key;
-		Item medkit;
-		Item bomb;
-		Item knife;
+        Item spacecake = new Item(1, "A slice of spacecake");
+		// Item Key;
+		// Item medkit;
+		// Item bomb;
+		// Item knife;
 
 
 
 		// And add them to the Rooms
-		// ...
+		outside.Chest.Put("spacecake",spacecake);
 
 		// Start game outside
 		player.CurrentRoom = outside;
@@ -121,6 +121,7 @@ class Game
 			break;
 			case "status":
 			    Status(command);
+		
 			break;
 		}
 
@@ -190,6 +191,8 @@ class Game
 	private void Status(Command command)
 	{
 		Console.WriteLine("Your health is: " + player.Health);
+		Console.WriteLine("Your BackPack");
+		Console.WriteLine(player.Backpack.Show());
 	}
 	
 	private void CheckGameOver()

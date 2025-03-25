@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 class Inventory
 {
     // fields
@@ -12,15 +14,17 @@ class Inventory
     }
     
     //methods
-    public bool put(string itemName, Item item)
+    public bool Put(string itemName, Item item)
     {
         // TODO implement:
         // Check the Weight of the Item and check
         //  for enough space in the Inventory
         // Does the Item fit?
+
         // Put Item in the items Dictionary
+        items.Add(itemName, item);
         // Return true/false for success/failure
-        return false;
+        return true;
     }
     public Item Get(string itemName)
     {
@@ -44,7 +48,20 @@ class Inventory
     {
         // TODO implement:
         // compare MaxWeight and TotalWeight()
-        return ...;
+        return 0;
     }
+    public string Show()
+    {
+       
+        foreach (var Key in items.Keys)
+        {
+            // Console.WriteLine(Key);
+            return Key;
+        }
     
+        return "";        
+    }
+
+    
+
 }
